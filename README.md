@@ -45,6 +45,5 @@ WaterQualityPrediction-Deployment/
 ├── requirements.txt
 ├── templates/
 │   └── index.html
-├── static/ (if any)
 └── README.md
 ```
