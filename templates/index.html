@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Potability Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f8f9fa;
+      padding-top: 40px;
+    }
+    .container {
+      max-width: 800px;
+    }
+    .form-control, .btn {
+      margin-bottom: 10px;
+    }
+    .result {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container bg-white p-4 shadow rounded">
+  <h2 class="text-center mb-4">💧 Water Potability Predictor</h2>
+  <form method="POST" action="/predict">
+    <div class="row">
+      {% for field in ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity'] %}
+      <div class="col-md-6">
+        <label>{{ field.replace('_', ' ') }}</label>
+        <input type="number" step="any" class="form-control" name="{{ field }}" required>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary mt-3 w-100">Predict</button>
+  </form>
+
+  {% if prediction %}
+    <div class="alert alert-info result">{{ prediction }}</div>
+  {% endif %}
+
+  <hr class="my-4">
+
+  <h4>📢 Feedback Form</h4>
+  <form method="POST" action="/feedback">
+    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+    <textarea class="form-control" name="suggestion" placeholder="Your Feedback" rows="3" required></textarea>
+    <select name="type" class="form-control">
+      <option value="UI Feedback">UI Feedback</option>
+      <option value="Feature Request">Feature Request</option>
+      <option value="Bug Report">Bug Report</option>
+    </select>
+    <button type="submit" class="btn btn-success mt-3 w-100">Submit Feedback</button>
+  </form>
+
+  {% if success %}
+    <div class="alert alert-success mt-3">{{ success }}</div>
+  {% endif %}
+</div>
+</body>
+</html>
