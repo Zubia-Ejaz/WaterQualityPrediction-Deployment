@@ -36,6 +36,7 @@ All dependencies are listed in the `requirements.txt` file.
 4. **Open in browser**
 ## Project Structure
 
+```
 WaterQualityPrediction-Deployment/
 ├── model.pkl
 ├── scaler.pkl
@@ -46,3 +47,4 @@ WaterQualityPrediction-Deployment/
 │   └── index.html
 ├── static/ (if any)
 └── README.md
+```
